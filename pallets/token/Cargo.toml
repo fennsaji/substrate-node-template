@@ -1,0 +1,55 @@
+[package]
+name = "pallet-token"
+authors = ["Metamui"]
+description = "Pallet for managing token"
+version = "1.0.0"
+license = "Unlicense"
+repository = "https://github.com/SovereignWallet-Network/metamui-tokenchain"
+edition = "2021"
+
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-linux-gnu"]
+
+[dependencies]
+codec = { package = "parity-scale-codec", version = "3.0.0", features = ["derive"], default-features = false }
+scale-info = { version = "=2.9.0", default-features = false, features = ["derive"] }
+
+# Substrate
+frame-benchmarking = { git = "https://github.com/paritytech/polkadot-sdk", default-features = false, optional = true, tag = "polkadot-v1.1.0" }
+frame-support = { git = "https://github.com/paritytech/polkadot-sdk", default-features = false, tag = "polkadot-v1.1.0" }
+frame-system = { git = "https://github.com/paritytech/polkadot-sdk", default-features = false, tag = "polkadot-v1.1.0" }
+
+# Metamui
+metamui-primitives = { default-features = false, path = '../metamui-primitives', version = '1.0.0' }
+
+[dev-dependencies]
+serde = { version = "1.0.132" }
+
+# Substrate
+sp-core = { git = "https://github.com/paritytech/polkadot-sdk", default-features = false, tag = "polkadot-v1.1.0" }
+sp-io = { git = "https://github.com/paritytech/polkadot-sdk", default-features = false, tag = "polkadot-v1.1.0" }
+sp-runtime = { git = "https://github.com/paritytech/polkadot-sdk", default-features = false, tag = "polkadot-v1.1.0" }
+
+# MetaMUI
+pallet-balances = { default-features = false, path = "../balances", version = '1.0.0' }
+pallet-did = { default-features = false, path = "../did", version = '1.0.0' }
+pallet-vc = { default-features = false, path = "../vc" }
+pallet-extrinsic-controls = { default-features = false, path = "../extrinsic-controls" }
+
+[features]
+default = ["std"]
+
+std = [
+	"codec/std",
+	"scale-info/std",
+	"frame-benchmarking/std",
+	"frame-support/std",
+	"frame-system/std",
+	"pallet-balances/std",
+	"pallet-did/std",
+	"pallet-vc/std",
+	"pallet-extrinsic-controls/std"
+
+]
+runtime-benchmarks = ["frame-benchmarking/runtime-benchmarks"]
+try-runtime = [ "frame-support/try-runtime" ]

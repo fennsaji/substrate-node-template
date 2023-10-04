@@ -1,0 +1,51 @@
+[package]
+name = "pallet-did"
+version = "1.0.0"
+description = 'Pallet to issue DID'
+authors =  [ 'Metablockchain' ]
+edition = "2021"
+publish = false
+
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-linux-gnu"]
+
+[dependencies]
+codec = { package = "parity-scale-codec", version = "3.0.0", default-features = false, features = ["derive"] }
+scale-info = { version = "=2.9.0", default-features = false, features = ["derive"] }
+serde = { features = ['derive'], optional = true, version = '1.0.136' }
+
+# Substrate
+sp-io = { default-features = false, git = "https://github.com/paritytech/polkadot-sdk", tag = "polkadot-v1.1.0" }
+sp-std = { default-features = false, git = "https://github.com/paritytech/polkadot-sdk", tag = "polkadot-v1.1.0" }
+sp-core = { default-features = false, git = "https://github.com/paritytech/polkadot-sdk", tag = "polkadot-v1.1.0" }
+sp-runtime = { default-features = false, git = "https://github.com/paritytech/polkadot-sdk", tag = "polkadot-v1.1.0" }
+frame-support = { default-features = false, git = "https://github.com/paritytech/polkadot-sdk", tag = "polkadot-v1.1.0"}
+frame-system = { default-features = false, git = "https://github.com/paritytech/polkadot-sdk", tag = "polkadot-v1.1.0" }
+frame-benchmarking = { default-features = false, git = "https://github.com/paritytech/polkadot-sdk", tag = "polkadot-v1.1.0", optional = true }
+
+# Cumulus
+cumulus-primitives-core = { default-features = false, git = "https://github.com/paritytech/polkadot-sdk", tag = "polkadot-v1.1.0" }
+
+# Metamui
+metamui-primitives = { default-features = false, path = '../metamui-primitives', version = '1.0.0' }
+
+[dev-dependencies]
+pallet-vc = { default-features = false, path = '../vc' }
+
+[features]
+default = ["std"]
+std = [
+	"serde",
+	"codec/std",
+	"sp-std/std",
+	"sp-runtime/std",
+	"scale-info/std",
+	"frame-support/std",
+	"frame-system/std",
+	"pallet-vc/std",
+	"frame-benchmarking/std",
+	"cumulus-primitives-core/std",
+]
+
+runtime-benchmarks = ["frame-benchmarking/runtime-benchmarks"]
+try-runtime = ["frame-support/try-runtime"]

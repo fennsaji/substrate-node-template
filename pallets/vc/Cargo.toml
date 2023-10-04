@@ -1,0 +1,50 @@
+[package]
+authors = [ 'Metablockchain' ]
+edition = '2021'
+name = 'pallet-vc'
+version = '1.0.0'
+description = 'Pallet to store Verfified Credentials'
+
+[package.metadata.docs.rs]
+targets = ['x86_64-unknown-linux-gnu']
+
+[dependencies]
+# alias "parity-scale-code" to "codec"
+codec = { default-features = false, features = ['derive'], package = 'parity-scale-codec', version = '3.0.0' }
+scale-info = { version = "=2.9.0", default-features = false, features = ["derive"] }
+
+serde = { version = "1.0.132", optional = true }
+
+# To allow deserialization of array greater the 32 elements, which is not supported by serde
+serde-big-array =  { version = "0.3.2" }
+
+# Substrate
+frame-support = { default-features = false, git = 'https://github.com/paritytech/polkadot-sdk', tag="polkadot-v1.1.0"}
+frame-system = { default-features = false, git = 'https://github.com/paritytech/polkadot-sdk', tag="polkadot-v1.1.0" }
+sp-core = { default-features = false, git = 'https://github.com/paritytech/polkadot-sdk', tag="polkadot-v1.1.0" }
+sp-io = { default-features = false, git = 'https://github.com/paritytech/polkadot-sdk', tag="polkadot-v1.1.0" }
+sp-runtime = { default-features = false, git = 'https://github.com/paritytech/polkadot-sdk', tag="polkadot-v1.1.0" }
+sp-std = { default-features = false, git = 'https://github.com/paritytech/polkadot-sdk', tag="polkadot-v1.1.0" }
+
+
+# Metamui
+metamui-primitives = { default-features = false, path = '../metamui-primitives', version = '1.0.0' }
+
+[dev-dependencies]
+pallet-validator-set = { default-features = false, path = '../validator-set', version = '1.0.0' }
+pallet-collective = { default-features = false, path = '../collective', version = '1.0.0' }
+pallet-validator-collective = { default-features = false, path = "../validator-collective", version = '1.0.0' }
+pallet-did = { default-features = false, path = "../did", version = '1.0.0' }
+
+[features]
+default = ['std']
+std = [
+    'serde',
+    'codec/std',
+    'frame-support/std',
+    'frame-system/std',
+    'pallet-validator-set/std',
+    'pallet-collective/std',
+    'pallet-did/std',
+    'pallet-validator-collective/std',
+]
