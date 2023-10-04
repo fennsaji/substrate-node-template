@@ -1,0 +1,14 @@
+[workspace]
+resolver = "2"
+members = [
+    "node",
+    "pallets/template",
+    "runtime",
+]
+
+[workspace.package]
+authors = ["Fenn Saji <fennsaji@gmail.com>"]
+edition = "2021"
+
+[profile.release]
+panic = "unwind"
