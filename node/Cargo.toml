@@ -58,7 +58,7 @@ frame-benchmarking = { git = "https://github.com/paritytech/polkadot-sdk.git", t
 frame-benchmarking-cli = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.1.0" }
 
 # Local Dependencies
-node-template-runtime = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.1.0" }
+node-template-runtime = { path = "../runtime" }
 
 # CLI-specific dependencies
 try-runtime-cli = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.1.0", optional = true}
